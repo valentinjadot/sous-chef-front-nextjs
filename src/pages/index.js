@@ -8,7 +8,6 @@ import useOrders from '../modules/ordersRegistration/hooks/useOrders';
 import UserRegistration from '../modules/userRegistration';
 
 export default function Home() {
-  // const [openForm, setOpenForm] = useState(false);
   const { orders, error, refreshOrders } = useOrders();
 
   if (error) {
