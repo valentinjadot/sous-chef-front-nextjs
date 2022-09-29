@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Toggle from './Toggle';
 import deadlinesUtil from '../utils/deadlinesUtil';
 
-export default function MealOrdersTableLine({ order, date, meal }) {
+export default function MealOrdersEditTableLine({ order, date, meal }) {
   const [orderDesactivated, setOrderDesactivated] = useState(!order.isActive);
   const { isRegistrationClosed, isTakeAwayClosed } = deadlinesUtil({ date, meal });
 

@@ -26,7 +26,9 @@ export default function Toggle({
 
     updateOrder({ orderId, changesToOrder });
     setStateValue(newValue);
-    onChange();
+    if (onChange) {
+      onChange();
+    }
   };
 
   const ComponentType = components[type];
