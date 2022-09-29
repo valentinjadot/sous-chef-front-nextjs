@@ -1,23 +1,18 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React from 'react';
 import styles from '../../styles/Home.module.css';
 import finLogo from '../../public/finLogo.gif';
 import OrdersRegistration from '../modules/ordersRegistration';
-import NewUserDialog from '../modules/ordersRegistration/components/NewUserDialog';
 import useOrders from '../modules/ordersRegistration/hooks/useOrders';
 import UserRegistration from '../modules/userRegistration';
 
 export default function Home() {
   // const [openForm, setOpenForm] = useState(false);
-  const { orders, error } = useOrders();
+  const { orders, error, refreshOrders } = useOrders();
 
   if (error) {
     return <h1>Error!</h1>;
-  }
-
-  if (!orders) {
-    return <h1>Loading...</h1>;
   }
 
   return (
@@ -33,19 +28,13 @@ export default function Home() {
           <main className={styles.main}>
             <h1 className={styles.title}>SousChef</h1>
 
-            <UserRegistration />
-
-            {/* <Button variant="contained" color="warning" onClick={() => setOpenForm(true)}>
-              Agregar invitado
-            </Button> */}
+            <UserRegistration onNewUser={refreshOrders} />
 
             <h3>Comidas! 🐷 🥬</h3>
 
-            <OrdersRegistration orders={orders} />
+            {orders ? <OrdersRegistration orders={orders} /> : <h1>Cargando los datos...</h1>}
 
             <Image src={finLogo} alt="finLogo" />
-
-            {/* <NewUserDialog open={openForm} onClose={() => setOpenForm(false)} /> */}
           </main>
 
           <footer className={styles.footer} />

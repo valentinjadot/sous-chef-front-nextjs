@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
-import { mutate } from 'swr';
 import Button from '@mui/material/Button';
 import NewUserDialog from './NewUserDialog';
 
-export default function UserRegistration() {
+export default function UserRegistration({ onNewUser }) {
   const [openForm, setOpenForm] = useState(false);
-
-  const refreshOrders = () => {
-    mutate();
-  };
 
   return (
     <>
@@ -16,7 +11,7 @@ export default function UserRegistration() {
         Agregar invitado
       </Button>
 
-      <NewUserDialog open={openForm} onClose={() => setOpenForm(false)} onNewUser={refreshOrders} />
+      <NewUserDialog open={openForm} onClose={() => setOpenForm(false)} onNewUser={onNewUser} />
     </>
   );
 }

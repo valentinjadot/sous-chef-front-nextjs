@@ -2,10 +2,11 @@ import useFetch from '../../common/hooks/useFetch';
 import { endPoints } from '../../common/utils/apiUtils';
 
 export default function useOrders() {
-  const { data, error } = useFetch(endPoints.orders);
+  const { data, error, mutate } = useFetch(endPoints.orders);
 
   return {
     orders: data,
-    error
+    error,
+    refreshOrders: mutate
   };
 }

@@ -5,10 +5,11 @@ export default function useFetch(endpoint) {
   const url = baseUrl() + endpoint;
   console.log(`connecting to ${url}`);
 
-  const { data, error } = useSWR(url, fetcher);
+  const { data, error, mutate } = useSWR(url, fetcher);
 
   return {
     data,
-    error
+    error,
+    mutate
   };
 }
