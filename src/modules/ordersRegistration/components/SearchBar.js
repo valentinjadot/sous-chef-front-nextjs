@@ -10,16 +10,24 @@ const darkTheme = createTheme({
   }
 });
 
-// const savedFilter = localStorage.getItem('filteredName');
+const savedFilter = () => localStorage.getItem('filteredName') ?? '';
 
 export default function SearchBar({ options, onChange }) {
-  const [filteredName, setFilteredName] = useState();
+  const [filteredName, setFilteredName] = useState(savedFilter());
 
-  // const saveInLocalStorage = () => localStorage.setItem('filteredName', filteredName);
+  const saveInLocalStorage = () => localStorage.setItem('filteredName', filteredName);
 
   const saveFilter = () => {
-    // saveInLocalStorage();
+    saveInLocalStorage();
     onChange(filteredName);
+  };
+
+  const isClearBottonClicked = (event) => event?.taget?.tagName === 'svg';
+
+  const handleOnChange = (event) => {
+    if (isClearBottonClicked(event)) {
+      setFilteredName('');
+    }
   };
 
   useEffect(() => {
@@ -30,6 +38,7 @@ export default function SearchBar({ options, onChange }) {
   return (
     <ThemeProvider theme={darkTheme}>
       <Autocomplete
+        onChange={handleOnChange}
         freeSolo
         inputValue={filteredName || ''}
         onInputChange={(e, newInputValue) => setFilteredName(newInputValue)}
