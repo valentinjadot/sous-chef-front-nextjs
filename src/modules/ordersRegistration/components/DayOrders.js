@@ -4,10 +4,8 @@ import 'dayjs/locale/es';
 import _ from 'lodash';
 import Meal from './Meal';
 import deadlinesUtil from '../utils/deadlinesUtil';
-import { JessicaContext } from '../../../pages/jessica';
 
-export default function DayOrders({ date, dayOrders }) {
-  const isJessica = React.useContext(JessicaContext);
+export default function DayOrders({ date, dayOrders, isJessica }) {
   const isClosed = (meal) => deadlinesUtil({ date, meal }).isRegistrationClosed;
 
   const formattedDate = dayjs(date).locale('es').format('dddd, MMMM D');
@@ -24,7 +22,13 @@ export default function DayOrders({ date, dayOrders }) {
 
       {ordersGroupedByMeal &&
         mealsToShow.map((meal) => (
-          <Meal mealOrders={ordersGroupedByMeal[meal]} meal={meal} key={meal} date={date} />
+          <Meal
+            mealOrders={ordersGroupedByMeal[meal]}
+            meal={meal}
+            key={meal}
+            date={date}
+            isJessica={isJessica}
+          />
         ))}
       <br />
       <br />

@@ -8,15 +8,18 @@ export default function deadlinesUtil({ date, meal }) {
 
   const now = dayjs();
   const orderDate = dayjs(date);
-  const registrationDeadline = orderDate.hour(END_OF_LUNCH_HOUR).subtract(TWENTY_FOUR_HOURS, 'hours');
+  const registrationDeadline = orderDate
+    .hour(END_OF_LUNCH_HOUR)
+    .subtract(TWENTY_FOUR_HOURS, 'hours');
   const isRegistrationClosed = now.isAfter(registrationDeadline);
-  const takeAwayDeadline = meal === 'lunch'
-    ? orderDate.hour(MORNING_NOTIFICATION_HOUR)
-    : orderDate.hour(AFTERNOON_NOTIFICATION_HOUR);
+  const takeAwayDeadline =
+    meal === 'lunch'
+      ? orderDate.hour(MORNING_NOTIFICATION_HOUR)
+      : orderDate.hour(AFTERNOON_NOTIFICATION_HOUR);
   const isTakeAwayClosed = now.isAfter(takeAwayDeadline);
 
   return {
     isRegistrationClosed,
-    isTakeAwayClosed,
+    isTakeAwayClosed
   };
 }

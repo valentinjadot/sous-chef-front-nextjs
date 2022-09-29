@@ -6,8 +6,6 @@ import finLogo from '../../public/finLogo.gif';
 import OrdersRegistration from '../modules/ordersRegistration';
 import useOrders from '../modules/ordersRegistration/hooks/useOrders';
 
-export const JessicaContext = React.createContext();
-
 export default function Home() {
   const { orders, error } = useOrders();
 
@@ -32,9 +30,11 @@ export default function Home() {
               Gracias por tu ayuda con Hugo! Aquí van las inscripciones de los próximos días 🐷 🥬
             </h3>
 
-            <JessicaContext.Provider value="true">
-              {orders ? <OrdersRegistration orders={orders} /> : <h1>Cargando los datos...</h1>}
-            </JessicaContext.Provider>
+            {orders ? (
+              <OrdersRegistration orders={orders} isJessica />
+            ) : (
+              <h1>Cargando los datos...</h1>
+            )}
 
             <Image src={finLogo} alt="finLogo" />
           </main>
