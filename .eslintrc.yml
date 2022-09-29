@@ -31,7 +31,6 @@ rules:
     ts: never
     tsx: never
 
-  import/no-unresolved: 0
 settings:
   import/resolver:
     node:

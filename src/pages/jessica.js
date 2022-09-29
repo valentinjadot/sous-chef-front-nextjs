@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import styles from '../../styles/Home.module.css';
 import finLogo from '../../public/finLogo.gif';
-import OrdersRegistration from '../modules/ordersRegistration';
+import OrdersRegistration from '../modules/ordersRegistration/components/OrdersRegistration';
 import useOrders from '../modules/ordersRegistration/hooks/useOrders';
 
 export default function Home() {
