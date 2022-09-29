@@ -1,6 +1,6 @@
 function baseUrl() {
   if (process.env.NODE_ENV === 'production') {
-    return process.env.VERCEL_API_BASE_URL;
+    return 'https://pl-sous-chef-back-production.herokuapp.com';
   }
   return 'http://localhost:3000';
 }
