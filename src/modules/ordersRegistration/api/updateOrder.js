@@ -1,6 +1,7 @@
-import hitEndpoint from '../../common/hooks/useFetch';
+import hitEndpoint from '../../common/utils/hitEndpoint';
+import { endPoints } from '../../common/utils/apiUtils';
 
 export default async function updateOrder({ orderId, changesToOrder }) {
-  const data = hitEndpoint(`/orders/${orderId}`, { order: changesToOrder }, 'patch');
+  const data = hitEndpoint(`${endPoints.orders}/${orderId}`, { order: changesToOrder }, 'patch');
   return data;
 }
